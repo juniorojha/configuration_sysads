@@ -181,7 +181,7 @@ EDXAPP_ENABLE_EDXNOTES: false
 EDXAPP_ENABLE_CREDIT_ELIGIBILITY: false
 EDXAPP_ENABLE_CREDIT_API: false
 
-EDXAPP_CUSTOM_COURSES_EDX: false
+EDXAPP_CUSTOM_COURSES_EDX: True
 
 EDXAPP_ENABLE_SYSADMIN_DASHBOARD: false
 # This is different from lms/envs/common.py
@@ -1119,7 +1119,8 @@ edxapp_theme_source_repo: 'https://{{ COMMON_GIT_MIRROR }}/Stanford-Online/edx-t
 edxapp_theme_version: 'master'
 
 # make this the public URL instead of writable
-edx_platform_repo: "https://{{ COMMON_GIT_MIRROR }}/edx/edx-platform.git"
+#edx_platform_repo: "https://{{ COMMON_GIT_MIRROR }}/edx/edx-platform.git"
+edx_platform_repo: "http://gitlab.cse.iitb.ac.in/FicusLatest/edx-platform.git"
 # `edx_platform_version` can be anything that git recognizes as a commit
 # reference, including a tag, a branch name, or a commit hash
 edx_platform_version: 'release'

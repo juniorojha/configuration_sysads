@@ -153,9 +153,9 @@ INSIGHTS_VERSION: "master"
 INSIGHTS_GIT_IDENTITY: !!null
 
 INSIGHTS_REPOS:
-  - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
-    DOMAIN: "{{ COMMON_GIT_MIRROR }}"
-    PATH: "{{ COMMON_GIT_PATH }}"
+  - PROTOCOL: http
+    DOMAIN: gitlab.cse.iitb.ac.in
+    PATH: FicusLatest
     REPO: edx-analytics-dashboard.git
     VERSION: "{{ INSIGHTS_VERSION }}"
     DESTINATION: "{{ insights_code_dir }}"

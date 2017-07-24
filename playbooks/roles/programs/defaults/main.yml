@@ -146,9 +146,9 @@ PROGRAMS_SERVICE_CONFIG:
   JWT_AUTH: '{{ PROGRAMS_JWT_AUTH }}'
 
 PROGRAMS_REPOS:
-  - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
-    DOMAIN: "{{ COMMON_GIT_MIRROR }}"
-    PATH: "{{ COMMON_GIT_PATH }}"
+  - PROTOCOL: http
+    DOMAIN: gitlab.cse.iitb.ac.in
+    PATH: FicusLatest
     REPO: programs.git
     VERSION: "{{ PROGRAMS_VERSION }}"
     DESTINATION: "{{ programs_code_dir }}"

@@ -187,9 +187,9 @@ ECOMMERCE_SERVICE_CONFIG:
 
 
 ECOMMERCE_REPOS:
-  - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
-    DOMAIN: "{{ COMMON_GIT_MIRROR }}"
-    PATH: "{{ COMMON_GIT_PATH }}"
+  - PROTOCOL: http
+    DOMAIN: gitlab.cse.iitb.ac.in
+    PATH: FicusLatest
     REPO: ecommerce.git
     VERSION: "{{ ECOMMERCE_VERSION }}"
     DESTINATION: "{{ ecommerce_code_dir }}"
