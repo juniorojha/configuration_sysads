@@ -32,7 +32,7 @@
 - name: Validate git protocol
   fail:
     msg: '{{ GIT_REPOS.PROTOCOL }} must be "https" or "ssh"'
-  when: (item.PROTOCOL != "https") and (item.PROTOCOL != "ssh") and GIT_REPOS is defined
+  when: (item.PROTOCOL != "https") and (item.PROTOCOL != "http") and (item.PROTOCOL != "ssh") and GIT_REPOS is defined
   with_items: "{{ GIT_REPOS }}"
   no_log: "{{ GIT_CLONE_NO_LOGGING }}"
   tags:
@@ -83,6 +83,21 @@
   tags:
     - install
     - install:code
+
+- name: Checkout code over http
+  git:
+    repo: "http://{{ item.DOMAIN }}/{{ item.PATH }}/{{ item.REPO }}"
+    dest: "{{ item.DESTINATION }}"
+    version: "{{ item.VERSION }}"
+  become_user: "{{ repo_owner }}"
+  register: code_checkout
+  when: item.PROTOCOL == "http" and GIT_REPOS is defined
+  with_items: "{{ GIT_REPOS }}"
+  no_log: "{{ GIT_CLONE_NO_LOGGING }}"
+  tags:
+    - install
+    - install:code
+
 
 - name: Remove read-only ssh key
   file:
