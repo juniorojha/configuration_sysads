@@ -16,7 +16,6 @@ certs_host: 192.168.1.111
 memcached_host: 192.168.1.112
 notifier_host: 192.168.1.114
 ecommerce_host: 192.168.1.115 
-notes_host: 192.168.1.115
 ecomworker_host: 192.168.1.115
 analytics_mysql_host: 192.168.1.120
 analytics_memcached_host: 192.168.1.120
@@ -30,26 +29,26 @@ password_db: "password"
 
 CSE_GIT_PROTOCOL: 'http'  
 CSE_GIT_MIRROR: 'gitlab.cse.iitb.ac.in' 
-CSE_GIT_PATH: 'FicusEDXV2'
+CSE_GIT_PATH: 'FicusLatest'
 
-edx_platform_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/edx-platform.git"
-CERTS_REPO: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/edx-certificates.git"
-forum_source_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/cs_comments_service.git"
-xqueue_source_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/xqueue.git"
-NOTIFIER_SOURCE_REPO: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/notifier.git"
+edx_platform_repo: "http://gitlab.cse.iitb.ac.in/FicusLatest/edx-platform.git"
+CERTS_REPO: "http://gitlab.cse.iitb.ac.in/FicusLatest/edx-certificates.git"
+forum_source_repo: "http://gitlab.cse.iitb.ac.in/FicusLatest/cs_comments_service.git"
+xqueue_source_repo: "http://gitlab.cse.iitb.ac.in/FicusLatest/xqueue.git"
+NOTIFIER_SOURCE_REPO: "http://gitlab.cse.iitb.ac.in/FicusLatest/notifier.git"
 
-version_name: "Ficus2-Sysads"
+version_name: "Ficus3-Sysads"
 edx_platform_version: "{{ version_name }}"
 certs_version: "{{ version_name }}"
+PROGRAMS_VERSION: "{{ version_name }}"
+ANALYTICS_API_VERSION: "{{ version_name }}"
+ECOMMERCE_WORKER_VERSION: "{{ version_name }}"
+ECOMMERCE_VERSION: "{{ version_name }}"
+INSIGHTS_VERSION: "{{ version_name }}"
+NOTIFIER_VERSION: "{{ version_name }}"
 forum_version: "{{ version_name }}"
 xqueue_version: "{{ version_name }}"
-NOTIFIER_VERSION: "{{ version_name }}"
-INSIGHTS_VERSION: "{{ version_name }}"
-ANALYTICS_API_VERSION: "{{ version_name }}"
 EDX_NOTES_API_VERSION: "{{ version_name }}"
-ECOMMERCE_VERSION: "{{ version_name }}"
-ECOMMERCE_WORKER_VERSION: "{{ version_name }}"
-PROGRAMS_VERSION: "{{ version_name }}"
 
 
 INSIGHTS_REPOS:
@@ -77,15 +76,6 @@ ECOMMERCE_REPOS:
     REPO: ecommerce.git
     VERSION: "{{ ECOMMERCE_VERSION }}"
     DESTINATION: "/edx/app/ecommerce/ecommerce"
-    SSH_KEY: !!null
-
-EDX_NOTES_API_REPOS:
-  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
-    DOMAIN: "{{ CSE_GIT_MIRROR }}"
-    PATH: "{{ CSE_GIT_PATH }}"
-    REPO: edx-notes-api.git
-    VERSION: "{{ EDX_NOTES_API_VERSION }}"
-    DESTINATION: "/edx/app/edx_notes_api/edx_notes_api"
     SSH_KEY: !!null
 
 ECOMMERCE_WORKER_REPOS:
@@ -165,8 +155,6 @@ EDXAPP_ECOMMERCE_PUBLIC_URL_ROOT: "http://{{ ecommerce_host }}:8002"
 EDXAPP_ECOMMERCE_API_URL: "http://{{ ecommerce_host }}:8002/api/v20"
 EDXAPP_COURSE_CATALOG_API_URL: "http://localhost:8008/api/v1"
 EDXAPP_ANALYTICS_DASHBOARD_URL: "http://{{ insights_host }}:80/courses"
-EDXAPP_EDXNOTES_PUBLIC_API: "http://{{ notes_host }}:18120/api/v1"
-EDXAPP_EDXNOTES_INTERNAL_API: "http://{{ notes_host }}:18120/api/v1"
 EDXAPP_CUSTOM_COURSES_EDX: true
 
 
@@ -381,14 +369,6 @@ EDX_NOTES_API_DATABASES:
 EDX_NOTES_API_ALLOWED_HOSTS:
   - localhost
   - "{{ lms_host }}"
-EDX_NOTES_API_REPOS:
-  - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
-    DOMAIN: "{{ COMMON_GIT_MIRROR }}"
-    PATH: "{{ COMMON_GIT_PATH }}"
-    REPO: edx-notes-api.git
-    VERSION: "{{ EDX_NOTES_API_VERSION }}"
-    DESTINATION: "{{ edx_notes_api_code_dir }}"
-    SSH_KEY: "{{ EDX_NOTES_API_GIT_SSH_KEY }}"
 
 #programs
 PROGRAMS_DEFAULT_DB_NAME: 'programs'

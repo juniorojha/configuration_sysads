@@ -42,7 +42,7 @@
     password: "{{ EDX_NOTES_API_MYSQL_DB_PASS }}"
     priv: "{{ EDX_NOTES_API_MYSQL_DB_NAME }}.*:SELECT,INSERT,UPDATE,DELETE"
     append_privs: yes
-    host: "{{ notes_host }}"
+#    host: "{{ notes_host }}"
   when: EDX_NOTES_API_MYSQL_DB_USER is defined
 
 - name: setup the read-only db user
