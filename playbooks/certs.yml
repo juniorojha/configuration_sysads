@@ -1,0 +1,7 @@
+---
+- name: Deploy certs
+  hosts: certs
+  sudo: True
+  gather_facts: True
+  roles:
+    - certs

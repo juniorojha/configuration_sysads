@@ -1,0 +1,14 @@
+---
+- name: Deploy edxapp cms
+  hosts: cms
+  sudo: True
+  gather_facts: True
+  vars:
+    service_variants_enabled:
+      - cms
+  roles:
+    - role: nginx
+      nginx_sites:
+      - cms
+    - edxapp
+

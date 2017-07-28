@@ -1,0 +1,9 @@
+---
+- name: Deploy notifier
+  hosts: notifier
+  sudo: True
+  gather_facts: True
+  roles:
+    - notifier
+
+

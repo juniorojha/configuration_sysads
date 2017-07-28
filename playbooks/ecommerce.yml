@@ -1,0 +1,11 @@
+---
+- name: Deploy edx Ecommerce
+  hosts: ecommerce
+  sudo: True
+  gather_facts: True
+  roles:
+    - role: nginx
+      nginx_sites:
+      - ecommerce
+    - ecommerce
+

@@ -1,0 +1,9 @@
+---
+- name: Deploy rabbitmq
+  hosts: rabbitmq
+  sudo: True
+  gather_facts: True
+  roles:
+    - { role: 'rabbitmq', rabbitmq_ip: " " }
+
+

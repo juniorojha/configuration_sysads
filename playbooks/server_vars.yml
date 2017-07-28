@@ -1,0 +1,421 @@
+#hosts - IP of each host should be specified below 
+mysql_host: 192.168.1.104
+lms_host: 192.168.1.102
+cms_host: 192.168.1.103
+celery_host: 192.168.1.113
+mongo_hosts: 
+  - 192.168.1.105
+  - 192.168.1.106
+rabbit_master: 192.168.1.107
+rabbit_slave1: 192.168.1.108
+#rabbit_slave2:
+xqueue_host: 192.168.1.110
+elasticsearch_host: 192.168.1.112
+forum_host: 192.168.1.109
+certs_host: 192.168.1.111
+memcached_host: 192.168.1.112
+notifier_host: 192.168.1.114
+ecommerce_host: 192.168.1.115 
+notes_host: 192.168.1.115
+ecomworker_host: 192.168.1.115
+analytics_mysql_host: 192.168.1.120
+analytics_memcached_host: 192.168.1.120
+analytics_api_host: 192.168.1.119
+insights_host: 192.168.1.118
+analytics_pipeline_host: 192.168.1.117
+programs_host: 192.168.1.115
+
+migrate_db: "yes"
+password_db: "password"
+
+CSE_GIT_PROTOCOL: 'http'  
+CSE_GIT_MIRROR: 'gitlab.cse.iitb.ac.in' 
+CSE_GIT_PATH: 'FicusEDXV2'
+
+edx_platform_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/edx-platform.git"
+CERTS_REPO: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/edx-certificates.git"
+forum_source_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/cs_comments_service.git"
+xqueue_source_repo: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/xqueue.git"
+NOTIFIER_SOURCE_REPO: "http://gitlab.cse.iitb.ac.in/FicusEDXV2/notifier.git"
+
+version_name: "Ficus2-Sysads"
+edx_platform_version: "{{ version_name }}"
+certs_version: "{{ version_name }}"
+forum_version: "{{ version_name }}"
+xqueue_version: "{{ version_name }}"
+NOTIFIER_VERSION: "{{ version_name }}"
+INSIGHTS_VERSION: "{{ version_name }}"
+ANALYTICS_API_VERSION: "{{ version_name }}"
+EDX_NOTES_API_VERSION: "{{ version_name }}"
+ECOMMERCE_VERSION: "{{ version_name }}"
+ECOMMERCE_WORKER_VERSION: "{{ version_name }}"
+PROGRAMS_VERSION: "{{ version_name }}"
+
+
+INSIGHTS_REPOS:
+  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
+    DOMAIN: "{{ CSE_GIT_MIRROR }}"
+    PATH: "{{ CSE_GIT_PATH }}"
+    REPO: edx-analytics-dashboard.git
+    VERSION: "{{ INSIGHTS_VERSION }}"
+    DESTINATION: "/edx/app/insights/edx_analytics_dashboard"
+    SSH_KEY: !!null
+
+ANALYTICS_API_REPOS:
+  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
+    DOMAIN: "{{ CSE_GIT_MIRROR }}"
+    PATH: "{{ CSE_GIT_PATH }}"
+    REPO: edx-analytics-data-api.git
+    VERSION: "{{ ANALYTICS_API_VERSION }}"
+    DESTINATION: "/edx/app/analytics_api/analytics_api"
+    SSH_KEY: !!null
+
+ECOMMERCE_REPOS:
+  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
+    DOMAIN: "{{ CSE_GIT_MIRROR }}"
+    PATH: "{{ CSE_GIT_PATH }}"
+    REPO: ecommerce.git
+    VERSION: "{{ ECOMMERCE_VERSION }}"
+    DESTINATION: "/edx/app/ecommerce/ecommerce"
+    SSH_KEY: !!null
+
+EDX_NOTES_API_REPOS:
+  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
+    DOMAIN: "{{ CSE_GIT_MIRROR }}"
+    PATH: "{{ CSE_GIT_PATH }}"
+    REPO: edx-notes-api.git
+    VERSION: "{{ EDX_NOTES_API_VERSION }}"
+    DESTINATION: "/edx/app/edx_notes_api/edx_notes_api"
+    SSH_KEY: !!null
+
+ECOMMERCE_WORKER_REPOS:
+  - PROTOCOL: '{{ CSE_GIT_PROTOCOL }}'
+    DOMAIN: '{{ CSE_GIT_MIRROR }}'
+    PATH: '{{ CSE_GIT_PATH }}'
+    REPO: ecommerce-worker.git
+    VERSION: '{{ ECOMMERCE_WORKER_VERSION }}'
+    DESTINATION: "/edx/app/ecomworker/ecomworker" 
+    SSH_KEY: !!null
+
+PROGRAMS_REPOS:
+  - PROTOCOL: "{{ CSE_GIT_PROTOCOL }}"
+    DOMAIN: "{{ CSE_GIT_MIRROR }}"
+    PATH: "{{ CSE_GIT_PATH }}"
+    REPO: programs.git
+    VERSION: "{{ PROGRAMS_VERSION }}"
+    DESTINATION: "/edx/app/programs/programs"
+    SSH_KEY: !!null
+
+#common
+COMMON_HTPASSWD_USER: edx
+COMMON_HTPASSWD_PASS: edx
+COMMON_MYSQL_READ_ONLY_USER: 'read_only'
+COMMON_MYSQL_READ_ONLY_PASS: "{{ password_db }}"
+COMMON_MYSQL_ADMIN_USER: 'admin'
+COMMON_MYSQL_ADMIN_PASS: "{{ password_db }}"
+COMMON_MYSQL_MIGRATE_USER: 'migrate'
+COMMON_MYSQL_MIGRATE_PASS: "{{ password_db }}"
+COMMON_MONGO_READ_ONLY_USER: 'read_only'
+COMMON_MONGO_READ_ONLY_PASS: !!null
+
+#mysql
+
+#edxapp
+EDXAPP_LMS_NGINX_PORT: '80'
+EDXAPP_XQUEUE_URL: "http://{{ xqueue_host }}:18040"
+EDXAPP_MONGO_HOSTS: "{{ mongo_hosts }}"
+EDXAPP_MONGO_PASSWORD: "{{ password_db }}"
+EDXAPP_MONGO_USER: 'edxapp'
+EDXAPP_MONGO_DB_NAME: 'edxapp'
+EDXAPP_MYSQL_DB_NAME: 'edxapp'
+EDXAPP_MYSQL_CSMH_DB_NAME: "edxapp_csmh"
+EDXAPP_MYSQL_USER: 'edxapp'
+EDXAPP_MYSQL_USER_ADMIN: 'root'
+EDXAPP_MYSQL_PASSWORD: "{{ password_db }}"
+EDXAPP_MYSQL_PASSWORD_READ_ONLY: "{{ password_db }}"
+EDXAPP_MYSQL_PASSWORD_ADMIN: "{{ password_db }}"
+EDXAPP_MYSQL_CSMH_USER: "{{ EDXAPP_MYSQL_USER }}"
+EDXAPP_MYSQL_CSMH_PASSWORD: "{{ password_db }}"
+EDXAPP_MYSQL_HOST: "{{ mysql_host }}"
+EDXAPP_MYSQL_PORT: '3306'
+EDXAPP_ELASTIC_SEARCH_CONFIG:
+    - host: "{{ elasticsearch_host }}"
+      port: 9200
+EDXAPP_MEMCACHE: [ "{{ memcached_host }}:11211" ]
+EDXAPP_COMMENTS_SERVICE_URL:  "http://{{ forum_host }}:18080"
+EDXAPP_COMMENTS_SERVICE_KEY:  'password'
+EDXAPP_EDXAPP_SECRET_KEY: "DUMMY KEY CHANGE BEFORE GOING TO PRODUCTION"
+EDXAPP_PLATFORM_NAME: 'Your Platform Name Here'
+EDXAPP_SITE_NAME: "{{ lms_host }}"
+EDXAPP_CMS_SITE_NAME: "{{ cms_host }}" 
+EDXAPP_RABBIT_HOSTNAME: "{{ rabbit_master }}"
+EDXAPP_PREVIEW_LMS_BASE: "preview.{{ lms_host }}"
+EDXAPP_TIME_ZONE: 'Asia/Kolkata'
+EDXAPP_TECH_SUPPORT_EMAIL: 'technical@example.com'
+EDXAPP_CONTACT_EMAIL: 'info@example.com'
+EDXAPP_BUGS_EMAIL: 'bugs@example.com'
+EDXAPP_DEFAULT_FROM_EMAIL: 'registration@example.com'
+EDXAPP_DEFAULT_FEEDBACK_EMAIL: 'feedback@example.com'
+EDXAPP_DEFAULT_SERVER_EMAIL: 'devops@example.com'
+EDXAPP_BULK_EMAIL_DEFAULT_FROM_EMAIL: 'no-reply@example.com'
+EDXAPP_UNIVERSITY_EMAIL: 'university@example.com'
+EDXAPP_PRESS_EMAIL: 'press@example.com'
+EDXAPP_EDX_API_KEY: "PUT_YOUR_API_KEY_HERE"
+EDXAPP_ECOMMERCE_PUBLIC_URL_ROOT: "http://{{ ecommerce_host }}:8002"
+EDXAPP_ECOMMERCE_API_URL: "http://{{ ecommerce_host }}:8002/api/v20"
+EDXAPP_COURSE_CATALOG_API_URL: "http://localhost:8008/api/v1"
+EDXAPP_ANALYTICS_DASHBOARD_URL: "http://{{ insights_host }}:80/courses"
+EDXAPP_EDXNOTES_PUBLIC_API: "http://{{ notes_host }}:18120/api/v1"
+EDXAPP_EDXNOTES_INTERNAL_API: "http://{{ notes_host }}:18120/api/v1"
+EDXAPP_CUSTOM_COURSES_EDX: true
+
+
+#mongo
+MONGO_ADMIN_USER: 'admin'
+MONGO_ADMIN_PASSWORD: "{{ password_db }}"
+MONGO_USERS:
+  - user: cs_comments_service
+    password: "{{ password_db }}"
+    database: cs_comments_service
+    roles: readWrite
+  - user: edxapp
+    password: "{{ password_db }}"
+    database: edxapp
+    roles: readWrite
+MONGO_CLUSTERED: true
+MONGO_BIND_IP: 0.0.0.0
+mongo_cluster_members: "{{ mongo_hosts }}"
+MONGO_CLUSTER_KEY: "mongoclusterkey"
+
+#rabbitmq
+RABBIT_USERS:
+  - name: 'admin'
+    password: 'admin'
+  - name: 'edx'
+    password: 'edx'
+  - name: 'celery'
+    password: 'celery'
+RABBITMQ_CLUSTERED_HOSTS:
+  - "{{ rabbit_master }}"
+  - "{{ rabbit_slave1 }}"
+#  - "{{ rabbit_slave2 }}"
+
+#xqueue
+XQUEUE_QUEUES:
+  # push queue
+  'edX-Open_DemoX': 'http://localhost:18050'
+  # pull queues
+  'test-pull': !!null
+  'certificates': !!null
+  'open-ended': !!null
+  'open-ended-message': !!null
+XQUEUE_RABBITMQ_HOSTNAME: "{{ rabbit_master }}"
+XQUEUE_MYSQL_DB_NAME: 'xqueue'
+XQUEUE_MYSQL_USER: 'xqueue'
+XQUEUE_MYSQL_PASSWORD: "{{ password_db }}"
+XQUEUE_MYSQL_HOST: "{{ mysql_host }}"
+XQUEUE_MYSQL_PORT: '3306'
+
+#elasticsearch
+ELASTICSEARCH_CLUSTER_MEMBERS: []
+
+#forum
+FORUM_MONGO_USER: "cs_comments_service"
+FORUM_MONGO_PASSWORD: "{{ password_db }}"
+FORUM_MONGO_HOSTS: "{{ mongo_hosts }}"
+FORUM_MONGO_TAGS: !!null
+FORUM_MONGO_DATABASE: "cs_comments_service"
+FORUM_API_KEY: "password"
+FORUM_ELASTICSEARCH_HOST: "{{ elasticsearch_host  }}"
+FORUM_SINATRA_ENV: "production"
+FORUM_RACK_ENV: "production"
+
+
+#certs
+CERTS_QUEUE_URL: "http://{{ xqueue_host }}:18040"
+CERTS_NGINX_PORT: 18090
+CERTS_URL: "http://{{ certs_host }}:{{ CERTS_NGINX_PORT }}"
+CERTS_DOWNLOAD_URL: "http://{{ certs_host }}:{{ CERTS_NGINX_PORT }}"
+CERTS_VERIFY_URL: "http://{{ certs_host }}:{{ CERTS_NGINX_PORT }}"
+#changed the default key to the new gpg key generated
+#CERTS_KEY_ID: "5032DBF3"
+#CERTS_LOCAL_PRIVATE_KEY: "private-key.txt"
+#CERTS_OWNER_TRUST: "8C0E2F2F90422742C9E6DE3FAEF3B5C35032DBF3:6:\n"
+
+
+
+#notifier
+NOTIFIER_LMS_URL_BASE: "http://{{ lms_host }}"
+NOTIFIER_LMS_SECRET_KEY: "PUT_YOUR_SECRET_KEY_HERE"
+NOTIFIER_COMMENT_SERVICE_BASE: "http://{{ forum_host }}:18080"
+NOTIFIER_COMMENT_SERVICE_API_KEY: "password"
+NOTIFIER_USER_SERVICE_BASE: "http://{{ lms_host }}:8000"
+NOTIFIER_USER_SERVICE_API_KEY: "PUT_YOUR_API_KEY_HERE"
+
+#ecommerce
+ECOMMERCE_DEFAULT_DB_NAME: 'ecommerce'
+ECOMMERCE_DATABASE_USER: "ecommerce"
+ECOMMERCE_DATABASE_PASSWORD: "{{ password_db }}"
+ECOMMERCE_DATABASE_HOST:  "{{ mysql_host }}"
+ECOMMERCE_DATABASE_PORT: 3306
+ECOMMERCE_SECRET_KEY: 'Your secret key here'
+ECOMMERCE_EDX_API_KEY: 'PUT_YOUR_API_KEY_HERE'  # This should match the value set for edxapp
+ECOMMERCE_ECOMMERCE_URL_ROOT: "http://{{ ecommerce_host }}:8002"
+ECOMMERCE_LOGOUT_URL: '{{ ECOMMERCE_ECOMMERCE_URL_ROOT }}/logout/'
+ECOMMERCE_LMS_URL_ROOT: "http://{{ lms_host }}:8000"
+# Used as the default RabbitMQ IP.
+ECOMMERCE_BROKER_HOST: '{{ ansible_default_ipv4.address }}'
+ECOMMERCE_COURSE_CATALOG_URL: 'http://localhost:8008'
+ECOMMERCE_SOCIAL_AUTH_EDX_OIDC_KEY : 'ecommerce-key'
+ECOMMERCE_SOCIAL_AUTH_EDX_OIDC_SECRET : 'ecommerce-secret'
+ecommerce_service_name: 'ecommerce'
+
+
+#ecomworker
+ECOMMERCE_WORKER_ECOMMERCE_API_ROOT: "http://{{ ecommerce_host }}:8002/api/v2/"
+# Used as the default RabbitMQ IP.
+ECOMMERCE_WORKER_BROKER_HOST: '{{ ansible_default_ipv4.address }}'
+
+#oauth client setup
+oauth_client_setup_role_name: oauth_client_setup
+oauth_client_setup_oauth2_clients:
+    - {
+        name: "{{ ecommerce_service_name | default('None') }}",
+        url_root: "{{ ECOMMERCE_ECOMMERCE_URL_ROOT }}",
+        id: "{{ ECOMMERCE_SOCIAL_AUTH_EDX_OIDC_KEY }}",
+        secret: "{{ ECOMMERCE_SOCIAL_AUTH_EDX_OIDC_SECRET }}",
+        logout_uri: "{{ ECOMMERCE_LOGOUT_URL }}"
+      }
+
+#analytics_api
+ANALYTICS_API_BASE_URL: "http://{{ analytics_api_host }}:8100"
+ANALYTICS_API_DEFAULT_DB_NAME: 'analytics-api'
+ANALYTICS_API_REPORTS_DB_NAME: 'reports'
+ANALYTICS_API_DATABASES:
+  # rw user
+  default:
+    ENGINE: 'django.db.backends.mysql'
+    NAME: '{{ ANALYTICS_API_DEFAULT_DB_NAME }}'
+    USER: 'api'
+    PASSWORD: "{{ password_db }}"
+    HOST: "{{ analytics_mysql_host }}"
+    PORT: '3306'
+  # read-only user
+  reports:
+    ENGINE: 'django.db.backends.mysql'
+    NAME: '{{ ANALYTICS_API_REPORTS_DB_NAME }}'
+    USER: 'reports'
+    PASSWORD: "{{ password_db }}"
+    HOST: "{{ analytics_mysql_host }}"
+    PORT: '3306'
+# Default dummy user, override this!!
+ANALYTICS_API_USERS:
+  "dummy-api-user": "changeme"
+ANALYTICS_API_ELASTICSEARCH_LEARNERS_HOST: "{{ elasticsearch_host }}"
+ANALYTICS_API_TIME_ZONE: 'Asia/Kolkata'
+
+#insights
+INSIGHTS_LMS_BASE: "http://{{ lms_host }}"
+INSIGHTS_CMS_BASE: "http://{{ cms_host }}:18010"
+INSIGHTS_BASE_URL: "http://{{ insights_host }}"
+INSIGHTS_MEMCACHE: [ "{{ analytics_memcached_host }}:11211" ]
+INSIGHTS_FEEDBACK_EMAIL: 'dashboard@example.com'
+INSIGHTS_MKTG_BASE: 'http://example.com'
+INSIGHTS_OAUTH2_SECRET: 'secret'
+INSIGHTS_OAUTH2_URL_ROOT: '{{ INSIGHTS_LMS_BASE }}/oauth2'
+INSIGHTS_OAUTH2_APP_CLIENT_NAME: insights
+INSIGHTS_OAUTH2_APP_USERNAME: staff
+INSIGHTS_SECRET_KEY: 'YOUR_SECRET_KEY_HERE'
+INSIGHTS_OAUTH2_KEY: 'YOUR_OAUTH2_KEY'
+# This will not work on single instance sandboxes
+INSIGHTS_DOC_BASE: "http://{{ insights_host }}/en/latest"
+ANALYTICS_API_ENDPOINT: 'http://{{ analytics_api_host }}:18100/api/v0'
+INSIGHTS_DATA_API_AUTH_TOKEN: 'changeme'
+INSIGHTS_PLATFORM_NAME: 'edX'
+INSIGHTS_APPLICATION_NAME: 'Insights'
+INSIGHTS_SEGMENT_IO_KEY: 'YOUR_KEY'
+INSIGHTS_TIME_ZONE: 'Asia/Kolkata'
+INSIGHTS_DATABASE_NAME: 'dashboard'
+INSIGHTS_DATABASE_USER: 'insights'
+INSIGHTS_DATABASE_PASSWORD: "{{ password_db }}"
+INSIGHTS_DATABASE_HOST:  "{{ analytics_mysql_host }}"
+INSIGHTS_DATABASE_PORT: 3306
+INSIGHTS_NGINX_PORT: "80"
+
+#analytics_pipeline
+ANALYTICS_PIPELINE_OUTPUT_DATABASE_USER: "pipeline"
+ANALYTICS_PIPELINE_OUTPUT_DATABASE_PASSWORD: "{{ password_db }}"
+ANALYTICS_PIPELINE_OUTPUT_DATABASE_HOST: "{{ analytics_mysql_host }}"
+ANALYTICS_PIPELINE_OUTPUT_DATABASE_PORT: 3306
+ANALYTICS_PIPELINE_INPUT_DATABASE:
+  username: "{{ COMMON_MYSQL_READ_ONLY_USER }}"
+  password: "{{ COMMON_MYSQL_READ_ONLY_PASS }}"
+  host: " {{ mysql_host }}"
+  port: 3306
+ANALYTICS_PIPELINE_HDFS_DATA_DIR: "hdfs://{{ analytics_pipeline_host }}:9000/data"
+
+#hive
+HIVE_METASTORE_DATABASE_NAME: edx_hive_metastore
+HIVE_METASTORE_DATABASE_USER: hive
+HIVE_METASTORE_DATABASE_PASSWORD: "{{ password_db }}"
+HIVE_METASTORE_DATABASE_HOST: "{{ analytics_mysql_host }}"
+HIVE_METASTORE_DATABASE_PORT: 3306
+
+#edx_notes_api
+edx_notes_api_service_name: edx_notes_api
+EDX_NOTES_API_DATASTORE_NAME: "{{ edx_notes_api_service_name }}"
+EDX_NOTES_API_MYSQL_DB_USER: "notes"
+EDX_NOTES_API_MYSQL_DB_NAME: "{{ EDX_NOTES_API_DATASTORE_NAME }}"
+EDX_NOTES_API_MYSQL_DB_PASS: "{{ password_db }}"
+EDX_NOTES_API_MYSQL_HOST: "{{ mysql_host }}"
+EDX_NOTES_API_ELASTICSEARCH_URL: "http://{{ elasticsearch_host }}:9200"
+EDX_NOTES_API_DATABASES:
+  # rw user
+  default:
+    ENGINE: django.db.backends.mysql
+    NAME: "{{ EDX_NOTES_API_MYSQL_DB_NAME }}"
+    USER: "{{ EDX_NOTES_API_MYSQL_DB_USER }}"
+    PASSWORD: "{{ EDX_NOTES_API_MYSQL_DB_PASS }}"
+    HOST: "{{ EDX_NOTES_API_MYSQL_HOST }}"
+    PORT: 3306
+EDX_NOTES_API_ALLOWED_HOSTS:
+  - localhost
+  - "{{ lms_host }}"
+EDX_NOTES_API_REPOS:
+  - PROTOCOL: "{{ COMMON_GIT_PROTOCOL }}"
+    DOMAIN: "{{ COMMON_GIT_MIRROR }}"
+    PATH: "{{ COMMON_GIT_PATH }}"
+    REPO: edx-notes-api.git
+    VERSION: "{{ EDX_NOTES_API_VERSION }}"
+    DESTINATION: "{{ edx_notes_api_code_dir }}"
+    SSH_KEY: "{{ EDX_NOTES_API_GIT_SSH_KEY }}"
+
+#programs
+PROGRAMS_DEFAULT_DB_NAME: 'programs'
+PROGRAMS_DATABASE_USER: 'programs'
+PROGRAMS_DATABASE_PASSWORD: "{{ password_db }}"
+PROGRAMS_DATABASE_HOST: "{{ mysql_host }}"
+PROGRAMS_DATABASE_PORT: 3306
+
+PROGRAMS_DATABASES:
+  # rw user
+  default:
+    ENGINE: 'django.db.backends.mysql'
+    NAME: '{{ PROGRAMS_DEFAULT_DB_NAME }}'
+    USER: '{{ PROGRAMS_DATABASE_USER }}'
+    PASSWORD: '{{ PROGRAMS_DATABASE_PASSWORD }}'
+    HOST: '{{ PROGRAMS_DATABASE_HOST }}'
+    PORT: '{{ PROGRAMS_DATABASE_PORT }}'
+    ATOMIC_REQUESTS: true
+    CONN_MAX_AGE: 60
+PROGRAMS_URL_ROOT: "http://{{ programs_host }}:8004"
+PROGRAMS_LMS_URL_ROOT: "http://{{ lms_host }}:8000"
+# the whitelist should always contain the public hostname for Studio in the given environment.
+PROGRAMS_CORS_ORIGIN_WHITELIST:
+  - '127.0.0.1:8001'
+  - "cms_host:18010"
+
+
+
+
+

@@ -1,0 +1,7 @@
+---
+- name: Deploy haproxy
+  hosts: haproxy
+  sudo: True
+  gather_facts: True
+  roles:
+    - haproxy

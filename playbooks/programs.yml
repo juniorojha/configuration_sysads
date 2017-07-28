@@ -1,0 +1,14 @@
+---
+- name: Deploy Programs
+  hosts: programs
+  sudo: True
+  gather_facts: True
+  roles:
+    - role: nginx
+      nginx_sites:
+        - programs
+      nginx_default_sites:
+        - programs
+    - programs
+
+

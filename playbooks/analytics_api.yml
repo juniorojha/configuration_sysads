@@ -1,0 +1,12 @@
+- name: Deploy all analytics api
+  hosts: analytics_api
+  become: True
+  gather_facts: True
+  vars:
+    migrate_db: "yes"
+    disable_edx_services: false
+    ENABLE_DATADOG: False
+    ENABLE_SPLUNKFORWARDER: False
+    ENABLE_NEWRELIC: False
+  roles:
+    - analytics_api

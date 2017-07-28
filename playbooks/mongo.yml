@@ -1,0 +1,7 @@
+---
+- name: Deploy MongoDB
+  hosts: mongo
+  sudo: True
+  gather_facts: True
+  roles:
+    - mongo

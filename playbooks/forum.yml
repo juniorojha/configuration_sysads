@@ -1,0 +1,12 @@
+---
+- name: Deploy forum
+  hosts: forum
+  sudo: True
+  gather_facts: True
+  roles:
+    - role: nginx
+      nginx_sites:
+      - forum
+    - forum
+
+

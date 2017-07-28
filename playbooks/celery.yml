@@ -1,0 +1,12 @@
+---
+- name: Deploy edxapp worker
+  hosts: celery
+  sudo: True
+  gather_facts: True
+  vars:
+    service_variants_enabled:
+      - lms
+      - cms
+  roles:
+    - { role: 'edxapp', celery_worker: True }
+

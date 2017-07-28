@@ -1,0 +1,10 @@
+---
+- name: Deploy elasticsearch
+  hosts: elasticsearch
+  sudo: True
+  gather_facts: True
+  roles:
+    - oraclejdk
+    - elasticsearch
+
+

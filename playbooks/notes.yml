@@ -1,0 +1,11 @@
+---
+- name: Deploy edx Notes api
+  hosts: notes
+  sudo: True
+  gather_facts: True
+  roles:
+    - role: nginx
+      nginx_sites:
+      - edx_notes_api
+    - edx_notes_api
+

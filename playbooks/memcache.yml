@@ -1,0 +1,7 @@
+---
+- name: Deploy memcache
+  hosts: memcache
+  sudo: True
+  gather_facts: True
+  roles:
+    - memcache

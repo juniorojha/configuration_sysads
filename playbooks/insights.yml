@@ -1,0 +1,9 @@
+---
+- name: Deploy insights
+  hosts: insights
+  sudo: True
+  gather_facts: True
+  roles:
+    - insights
+
+

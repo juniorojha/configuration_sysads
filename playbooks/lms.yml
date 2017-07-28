@@ -1,0 +1,14 @@
+---
+- name: Deploy edxapp lms
+  hosts: lms
+  sudo: True
+  gather_facts: True
+  vars:
+    service_variants_enabled:
+      - lms
+  roles:
+    - role: nginx
+      nginx_sites:
+      - lms
+    - edxapp
+

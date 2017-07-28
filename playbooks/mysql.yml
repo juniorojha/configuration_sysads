@@ -1,0 +1,8 @@
+---
+- name: Deploy mysql
+  hosts: mysql
+  sudo: True
+  gather_facts: True
+  roles:
+    - mysql
+    - edxlocal

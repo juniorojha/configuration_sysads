@@ -1,0 +1,8 @@
+---
+- name: Deploy edx Ecommerce worker
+  hosts: ecomworker
+  sudo: True
+  gather_facts: True
+  roles:
+    - ecomworker
+
